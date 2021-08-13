@@ -6,9 +6,6 @@ function computerPlay(){
 }
 
 
-
-
-
 let playerSelection = 'rock'
 
 
@@ -19,18 +16,44 @@ function playRound() {
   const computerSelection = computerPlay()
   console.log(computerSelection);
    
-  if (playerSelection === 'rock') {
+    if (playerSelection === 'rock') {
        if (computerSelection === 'rock'){
        return 'draw';
-   } 
+        } 
   
    else if (computerSelection === 'paper'){
         return 'You lose! Paper beats rock!';
-   } 
+        } 
    
-   else {
+    else {
        return 'Well done! You win king!, Rock beats scissors!';
-   }
-}
+        }
+    }
+    
+    if (playerSelection === 'paper'){
+        if (computerSelection === 'paper'){
+            return 'draw'
+        }
+    else if (computerSelection === 'scissors'){
+        return 'you lose! scissors beats paper :('
+        }
+    else {
+        return 'Well done You Win! Paper beats rock :)'
+        }
+    }
+
+    if (playerSelection === 'scissors'){
+        if (computerSelection === 'scissors'){
+            return 'draw'
+        }
+        else if (computerSelection === 'rock'){
+            return 'You lose, rock beats scissors'
+    }
+    else {
+        return 'well done you. great choice, scissors beats paper :) :) :)'
+
+    }
+        }
+    
 }
 console.log(playRound());
