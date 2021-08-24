@@ -1,109 +1,103 @@
+
+let computerScore = 0;
+let playerScore = 0;
+let computerSelection
+const options = [ 'rock', 'paper', 'scissors'];
+let buttons = document.querySelectorAll(".button");
+
+
+
+
+
+
+/*loop through each element of the array on click*/
+
+buttons.forEach((button)=>{
+    button.addEventListener("click", () => {
+        const img = button.querySelector("img");
+        playerSelection = img.alt.toLowerCase();
+         
+       
+       
+
+        playRound(playerSelection, computerSelection);
+
+        if (playerScore === 5 || computerScore === 5) {
+            declareWinner();
+        }
+
+    })
+})
+
 /* This function randomly outputs rock, paper, or scissors*/
-function computerPlay(){
-    let options = ['rock', 'paper', 'scissors'];
-   
-    answer = options[Math.floor(Math.random()* options.length)];
-    
-    return answer
+const myArray = ["Rock", "Paper", "Scissors"];
+
+function computerPlay() {
+  return myArray[~~(Math.random() * myArray.length)];
 }
+ 
 
-
-let computerScore = 1
-let playerScore = 1
-let draw = 0
-let score
-
-
-
-function game(){
-    
-    console.log(playRound())
-    console.log(playRound())
-    console.log(playRound())
-    console.log(playRound())
-    console.log(playRound())
-    
-    if(computerScore > playerScore){
-        console.log("computer wins!!! you lose")
-    } else if (computerScore === playerScore){
-        console.log('Its a draw!')
-    } else {
-        console.log('Player wins! Victory over machines!!!')}
-
-    
-
-}
-
-
-
-
-
-/* this function will play a round of r,p,s taking computerSelection and playerselection as input */
 function playRound(){
-
-  const computerSelection = computerPlay()
-
-  let playerSelection = prompt('pick rock, paper, or scissors', "")
+    computerSelection = computerPlay().toLowerCase();
+    playerSelection = playerSelection.toLowerCase();
+    if (playerSelection === computerSelection) {
+       console.log("its a tie!");
+        } else if 
+   (
+    (computerSelection === 'paper' && playerSelection === 'rock') || 
+    (computerSelection === 'rock' && playerSelection === 'scissors') ||
+    (computerSelection === 'scissors' && playerSelection === 'paper')
+   )
    
-    if (playerSelection === 'rock') {
-       if (computerSelection === 'rock'){
-        
-        return ('draw'+ draw)
-        } 
-  
-   else if (computerSelection === 'paper'){
-        
-        return ('computer wins ' + '' + ' computer score ' + computerScore++)
-        } 
-   
-    else {
-      
-        return ('player wins ' + '' + ' player score ' + playerScore++)
+    { 
+        computerScore = ++computerScore;
+        keepComputerScore()
         }
+        else{ playerScore = ++playerScore 
+            
+            keepPlayerScore();
+            }
+            displayPlayerChoice();
+            displayComputerChoice();
+
+    
     }
     
-    if (playerSelection === 'paper'){
-        if (computerSelection === 'paper'){
-             
-            return ('draw' + draw)
-        }
-    else if (computerSelection === 'scissors'){
-         
-        return ('computer wins ' + '' + ' computer score ' + computerScore++)
-        }
-    else {
-         
-        return ('player wins ' + '' + ' player score ' + playerScore++)
-        }
-    }
+        
+       
 
-    if (playerSelection === 'scissors'){
-        if (computerSelection === 'scissors'){
-            
-            return ('draw' + draw)
-        }
-        else if (computerSelection === 'rock'){
-            
-            return ('computer wins ' + '' + ' computer score ' + computerScore++)
-    }
-    else {
-         
-        return ('player wins ' + '' + ' player score ' + playerScore++)
-
-    }
-        }
-      
-        console.log(computerScore);
-        console.log(playerScore);
-        console.log(playerSelection);
+        
         
       
 
+
+
+
+function declareWinner(){
+    if (computerScore > playerScore){
+        alert('Computer Wins!!!')
+    }else{
+        alert('Player Wins!!!')
+    }
 }
-    
 
-    
 
-    
+function keepComputerScore(){
+    let computerScoreBox = document.querySelector("#computer-score");
+    computerScoreBox.textContent = "computer score" + ' ' + computerScore;
+}
 
-game();
+function keepPlayerScore(){
+    let playerScoreBox = document.querySelector("#player-score");
+    playerScoreBox.textContent = 'Player Score' + ' ' + playerScore;
+}
+
+function displayPlayerChoice(){
+    let displayPlayer = document.querySelector('#playerChoice');
+    displayPlayer.textContent = 'Player chose:' + ' ' + playerSelection;
+}
+
+function displayComputerChoice(){
+    let displayComputer = document.querySelector('#computerChoice');
+    displayComputer.textContent = 'Computer chose:' + ' ' + computerSelection;
+}
